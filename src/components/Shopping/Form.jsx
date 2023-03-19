@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 
-import { loadStripe } from "@stripe/stripe-js";
+import getStripe from '../../lib/getStripe'
 
-const stripePromise = loadStripe("VITE_PUBLIC_STRIPE_PUBLISHABLE_KEY");
-
-function Form({ cart, total }) {
+function Form({ cart, total, id }) {
   console.log(cart);
 
   const [formData, setFormData] = useState({
@@ -33,30 +31,33 @@ function Form({ cart, total }) {
 
   const handleFormSubmit = async () => {
     console.log(formData);
-    const stripe = await stripePromise;
+    const stripe = await getStripe();
   
     try {
-      const response = await fetch('http://localhost:3000/create-checkout-session', {
+      const response = await fetch('/api/stripe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           items: cart,
+          id: id,
           total: total
         })
       });
+
+      if(response.statusCode === 500) return
+
   
       const data = await response.json();
-      const { sessionId } = data;
-      
+      stripe.redirectToCheckout({sessionId: data.id})
+
+/*       toast.loading('Redirecting...')
+ */      
       const result = await stripe.redirectToCheckout({
         sessionId: sessionId
       });
   
-      if (result.error) {
-        console.log(result.error.message);
-      }
     } catch (error) {
       console.log(error);
     }

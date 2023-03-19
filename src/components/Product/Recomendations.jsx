@@ -38,7 +38,7 @@ function Newseason() {
     <div className='flex flex-row w-full h-full mt-20 justify-between items-center '>
         <h3 className='text-4xl ml-4 mb-16 lg:mb-0 lg:ml-0 lg:text-2xl uppercase'>Recomendations</h3>
         <div>
-        <Link href="/products">
+        <Link href="/Store">
         <span className='hidden lg:flex flex-row border-b-[1px] border-gray-900 uppercase font-medium cursor-pointer'>
             show all &nbsp;
             <HiArrowUpRight className=" mt-2 text-xs"/>
@@ -73,7 +73,7 @@ function Newseason() {
         />
     </div>
     <div className="flex flex-col items-center lg:hidden">
-      <Link href="/products">
+      <Link href="/Store">
       <button className=" font-semibold border-2 border-black px-28 py-2 uppercase">
           <span className="font-semibold">show all</span>
         </button>

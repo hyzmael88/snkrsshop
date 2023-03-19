@@ -1,5 +1,5 @@
 import React from 'react'
-import LoginFacebook from './LoginFacebook'
+import LoginFacebook from '../components/Auth/LoginFacebook'
 
 
 

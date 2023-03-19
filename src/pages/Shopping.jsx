@@ -6,14 +6,21 @@ import { urlFor } from "../lib/client";
 
 
 function Shopping() {
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('facebookUser')).cart)
+  const [cart, setCart] = useState([])
+  const [id, setId] = useState(null)
   const [subtotal, setSubtotal] = useState(0)
   const [total, setTotal] = useState(0)
 
   var aux = 0
   useEffect(() => {
-    
-    
+    const storedId = JSON.parse(localStorage.getItem('facebookUser'))?.facebookId;
+    if(storedId){
+      setId(storedId)
+    }
+    const storedCart = JSON.parse(localStorage.getItem('facebookUser'))?.cart;
+    if (storedCart) {
+      setCart(storedCart);
+    }
       
       totalCalc();
     
@@ -41,14 +48,16 @@ function Shopping() {
       <div className="flex flex-col-reverse px-6 lg:px-0  lg:flex-row w-full h-full">
         <div className="flex flex-col w-full lg:w-2/3 lg:pl-8 mt-4 lg:mt-0 mr-10">
         <Form
+        id = {id}
         cart = {cart}
         total = {total}
         />
         </div>
         <div className="flex flex-col w-full lg:w-1/3  ">
           <h3 className="uppercase font-bold mb-4">Summary</h3>
-          {cart?.map((item) => (
+          {cart?.map((item, index) => (
            <Sumary
+           key = {index}
            item = {item}
            />
           ))}

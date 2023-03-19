@@ -16,7 +16,7 @@ function Producto({ producto }) {
 
   return (
     <div className=" mt-10 w-[500px] mr-10 cursor-pointer">
-      <Link href={`/products/${producto.slug.current}`}>
+      <Link href={`/Product/${encodeURIComponent(producto.slug.current)} `}>
       <img src={urlFor(producto?.image[0].asset._ref)} alt="snkr" className="w-[250px] h-[150px]" />
      <p className="mt-6 text-sm text-gray-400 ">{category && category[0] && category[0].title}</p> 
       <div className="flex flex-row gap-8 justify-between">

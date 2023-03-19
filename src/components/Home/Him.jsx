@@ -2,6 +2,7 @@ import React from "react";
 import Himg from "../../assets/him.jpg";
 import {HiArrowUpRight} from 'react-icons/hi2'
 import Button from "./Button";
+import Image from "next/image";
 
 function Him() {
   return (
@@ -19,7 +20,7 @@ function Him() {
         <Button/>
       </div>
       <div className="w-full lg:w-1/2">
-        <img src={Himg} alt="him" className="" />
+        <Image src={Himg} alt="him" className="" />
       </div>
       
     </div>

@@ -17,10 +17,10 @@ function Mosaic({ producto }) {
   return (
     <Fragment>
       <div>
-        <div className="flex flex-row w-full h-full  justify-between items-center ">
+        <div className=" flex flex-row  w-full h-full  justify-between items-center ">
           
         </div>
-        <div className="relative flex flex-row items-center group">
+        <div className="lg:hidden relative flex flex-row items-center group">
           <MdChevronLeft
             onClick={slideLeft}
             size={40}
@@ -41,7 +41,7 @@ function Mosaic({ producto }) {
           />
         </div>
       </div>
-      <div className="hidden lg:grid grid-cols-2  gap-10 w-full h-full px-4">
+      <div className="hidden lg:grid lg:grid-cols-2  gap-10 w-full h-full px-4">
         {producto?.image.map((img, index) => (
           <img src={urlFor(img.asset._ref)} alt="" />
         ))}

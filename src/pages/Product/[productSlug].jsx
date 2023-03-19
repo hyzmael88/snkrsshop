@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useRouter } from 'next/router';
-import Info from "../components/Product/Info";
-import Mosaic from "../components/Product/Mosaic";
-import Recomendations from "../components/Product/Recomendations";
-import { AppContext } from "../context/StateContext";
+import Info from "../../components/Product/Info";
+import Mosaic from "../../components/Product/Mosaic";
+import Recomendations from "../../components/Product/Recomendations";
+import { AppContext } from "../../context/StateContext";
 
 function Product() {
   const router = useRouter();

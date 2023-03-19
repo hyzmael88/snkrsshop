@@ -12,7 +12,7 @@ function Product({ product }) {
       .then((category) => setCategory(category));
   }, [product.category._ref]);
   return (
-    <Link href={`/products/${product.slug.current} `} className="cursor-pointer">
+    <Link href={`/Product/${encodeURIComponent(product.slug.current)} `} className="cursor-pointer">
     
     <div className="flex flex-col justiy-center items-center w-full h-[350px] border-[1px] lg:border-[0.5px] border-gray-300 ">
       <div className="w-[90%]">

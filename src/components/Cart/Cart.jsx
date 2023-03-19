@@ -27,7 +27,7 @@ function Cart({cart}) {
           <HiOutlineShoppingBag className=' '/>
         </div>
     :
-    <Link href='shopping'>
+    <Link href='Shopping'>
     <div className='border-2 border-black ml-4 rounded-full px-5 py-3 lg:px-4 lg:py-2'>
 
       <span className=''> {total}</span>

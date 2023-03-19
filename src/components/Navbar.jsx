@@ -70,7 +70,7 @@ function Navbar() {
               {user.name}
             </p>
           ) : (
-            <Link href="auth">
+            <Link href="Auth">
               <div className="ml-4 uppercase cursor-pointer">
                 Iniciar Sesion
               </div>
@@ -115,10 +115,10 @@ function Navbar() {
             <Link href="" className="my-6"  onClick={() => setMovil(false) }>
               <span className="my-4 uppercase ">For Him</span>
             </Link>
-              <Link href='/products' className="my-6"  onClick={() => setMovil(false) }>
+              <Link href='/Store' className="my-6"  onClick={() => setMovil(false) }>
               <span className="my-4 uppercase ">Store</span>
               </Link>
-              <Link href='/magazine' className="my-6"  onClick={() => setMovil(false) }>
+              <Link href='/Magazine' className="my-6"  onClick={() => setMovil(false) }>
               <span className="my-4 uppercase ">Magazine</span>
               </Link>
               <span className="my-4 uppercase ">{user ? (

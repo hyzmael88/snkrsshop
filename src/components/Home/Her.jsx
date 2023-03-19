@@ -1,5 +1,6 @@
 import React from "react";
 import Herimg from "../../assets/her.jpg";
+import Image from 'next/image';
 import {HiArrowUpRight} from 'react-icons/hi2'
 import Button from "./Button";
 
@@ -7,7 +8,7 @@ function Her() {
   return (
     <div className="flex flex-col items-center lg:items-start lg:flex-row  w-full h-full mt-24 ">
        <div className="w-full lg:w-1/2">
-        <img src={Herimg} alt="him" className="" />
+        <Image src={Herimg} alt="him" className="" />
       </div>
       <div className="flex flex-col items-center w-full lg:w-1/2">
         <h3 className="text-5xl mb-8 text-left uppercase mt-4 lg:mt-0">For Her</h3>

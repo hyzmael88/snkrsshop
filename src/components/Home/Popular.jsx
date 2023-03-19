@@ -45,7 +45,7 @@ sortedProductsPopular.sort((a, b) => b.totalSales - a.totalSales);
       <div className="flex flex-row w-full h-full mt-20 justify-between items-center ">
         <h3 className="text-4xl ml-4 mb-16 lg:mb-0 lg:ml-0 lg:text-6xl uppercase">Popular</h3>
         <div>
-        <Link href="/products">
+        <Link href="/Store">
           <span className="hidden lg:flex flex-row border-b-[1px] border-gray-900 uppercase font-medium cursor-pointer">
             show all &nbsp;
             <HiArrowUpRight className=" mt-2 text-xs" />
@@ -74,7 +74,7 @@ sortedProductsPopular.sort((a, b) => b.totalSales - a.totalSales);
         />
       </div>
       <div className="flex flex-col w-full items-center lg:hidden">
-      <Link href="/products">
+      <Link href="/Store">
         <button className=" font-semibold border-2 border-black px-28 py-2 uppercase">
           <span className="font-semibold">show all</span>
         </button>
