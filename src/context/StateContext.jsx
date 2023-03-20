@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { client } from "../lib/client";
 
-
 const StateContext = createContext();
 
 export function StateContextProvider({ children }) {
@@ -53,24 +52,21 @@ export function StateContextProvider({ children }) {
     const product = await client.fetch(query, params);
     setProduct(product);
   };
-  
+
   const getFacebookUser = async (id) => {
-   if(id){
-
-     const query = `*[_type == "facebookUser" && facebookId == $id]`;
-     const params = { id };
-     const user = await client.fetch(query, params);
-     console.log("dentro de getFacebookUser", user);
-     if (user?.length == 0) {
-      console.log("no encontré el usuario");
-      return null;
-    } else {
-      console.log("encontré el usuario:", user);
-      return user[0];
+    if (id) {
+      const query = `*[_type == "facebookUser" && facebookId == $id]`;
+      const params = { id };
+      const user = await client.fetch(query, params);
+      console.log("dentro de getFacebookUser", user);
+      if (user?.length == 0) {
+        console.log("no encontré el usuario");
+        return null;
+      } else {
+        console.log("encontré el usuario:", user);
+        return user[0];
+      }
     }
-   }
-
-   
   };
 
   const getPosts = async () => {
@@ -83,7 +79,7 @@ export function StateContextProvider({ children }) {
     const query = `*[_type == "blogPost" && slug.current == $postSlug]`;
     const params = { postSlug };
     const post = await client.fetch(query, params);
-    console.log(post)
+    console.log(post);
     setPost(post);
   };
   const getCategories = async () => {
@@ -98,7 +94,7 @@ export function StateContextProvider({ children }) {
   };
 
   //Cart
- /*  function getProductWithSelectedSize(product, productSize) {
+  /*  function getProductWithSelectedSize(product, productSize) {
     const selectedSize = product.sizes.find((size) => size === productSize);
 
     if (!selectedSize) {
@@ -108,46 +104,41 @@ export function StateContextProvider({ children }) {
     return { ...product, productSizeSelected: [selectedSize] };
   } */
   const addCart = (product, productSize) => {
-    console.log('agregar',product, productSize)
-   
+    console.log("agregar", product, productSize);
+
     const storedData = JSON.parse(localStorage.getItem("facebookUser"));
-    console.log(storedData)
+    console.log(storedData);
     if (storedData) {
       const userId = storedData.facebookId;
       getFacebookUser(userId).then((user) => {
-       
         if (user) {
-        
-          let carrito = storedData.cart ;
-          console.log('cart del usuario', carrito)
+          let carrito = storedData.cart;
+          console.log("cart del usuario", carrito);
           const cartItem = {
-            
-            id:product._id,
-            _key: Math.random().toString(36).substr(2, 9) ,
+            id: product._id,
+            _key: Math.random().toString(36).substr(2, 9),
             name: product.name,
             image: product.image[0].asset._ref,
             size: productSize.size,
             price: productSize.price,
-            quantity: 1
+            quantity: 1,
           };
-          
-          console.log('lo que vamos a agregar',cartItem)
+
+          console.log("lo que vamos a agregar", cartItem);
           const index = carrito.findIndex((item) => {
             return item.id === product._id && item.size === productSize.size;
           });
-  
+
           if (index !== -1) {
             carrito[index].quantity += 1;
           } else {
             carrito.push(cartItem);
           }
 
-          
-          
-          console.log('carrito actualizado',carrito)
-          
+          console.log("carrito actualizado", carrito);
+
           user.cart = carrito;
-          console.log('carrito dentro de usuario', user)
+          console.log("carrito dentro de usuario", user);
           updateFacebookUser(user).then((result) => {
             if (result) {
               setFacebookUser(result);
@@ -159,41 +150,61 @@ export function StateContextProvider({ children }) {
     }
   };
 
-  const deleteItemCart = (id) =>{
-    console.log(id)
+  const deleteItemCart = (id) => {
+    console.log(id);
     const storedData = JSON.parse(localStorage.getItem("facebookUser"));
     if (storedData) {
       const userId = storedData.facebookId;
       getFacebookUser(userId).then((user) => {
-        console.log(user)
+        console.log(user);
         if (user) {
-          let cart = user.cart
-          console.log(cart)
-          for (var i = 0; i< cart.length; i++){
-            if(cart[i].id == id ){
-              cart.splice(i,1)
-              break
+          let cart = user.cart;
+          console.log(cart);
+          for (var i = 0; i < cart.length; i++) {
+            if (cart[i].id == id) {
+              cart.splice(i, 1);
+              break;
             }
           }
-          user.cart = cart
+          user.cart = cart;
           updateFacebookUser(user).then((result) => {
             if (result) {
               setFacebookUser(result);
               localStorage.setItem("facebookUser", JSON.stringify(result));
             }
           });
-
-          
-  }
-})
+        }
+      });
     }
-  }
+  };
+
+  const deleteCart = () => {
+    var storedData = JSON.parse(localStorage.getItem("facebookUser"));
+    if (storedData) {
+      storedData.cart = [];
+      localStorage.setItem("facebookUser", JSON.stringify(storedData));
+      const userId = storedData.facebookId;
+  console.log(userId)
+      getFacebookUser(userId).then((user) => {
+        if (user) {
+          user.cart = [];
+          console.log(user.cart)
+          updateFacebookUser(user).then((result) => {
+            if (result) {
+              console.log(result)
+              setFacebookUser(result);
+              localStorage.setItem("facebookUser", JSON.stringify(result));
+            }
+          });
+        }
+      });
+    }
+  };
 
   //TODO updateFacebookUser
-  function updateFacebookUser(user){
+  function updateFacebookUser(user) {
     return client.patch(user._id).set({ cart: user.cart }).commit();
   }
-  
 
   //Home
   useEffect(() => {
@@ -205,11 +216,8 @@ export function StateContextProvider({ children }) {
 
   //Cart
   useEffect(() => {
-    console.log('se modifico el carrito', cart)
-  
-    
-  }, [cart])
-  
+    console.log("se modifico el carrito", cart);
+  }, [cart]);
 
   //Auth
   function createFacebookUser(userResponse) {
@@ -325,7 +333,8 @@ export function StateContextProvider({ children }) {
         facebookUser,
         setFacebookUser,
         getFacebookUser,
-        deleteItemCart
+        deleteItemCart,
+        deleteCart
       }}
     >
       {children}

@@ -1,7 +1,17 @@
+import { AppContext } from '@/context/StateContext';
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 function Sucess() {
+
+  const { deleteCart } = AppContext();
+
+
+  useEffect(() => {
+   deleteCart()
+  }, [])
+  
+
   return (
     <div className='w-full h-full '>
     <div className='h-screen w-full flex flex-col text-center items-center justify-center'>

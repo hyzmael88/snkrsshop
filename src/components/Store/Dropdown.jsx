@@ -7,12 +7,16 @@ import { AppContext } from "../../context/StateContext";
 const Dropdown = () => {
   
   const [isOpen, setIsOpen] = useState(false);
-  const { selectedOption, setSelectedOption, options} = AppContext();
+  const { selectedOption, setSelectedOption, options, genders, setSelectedGender} = AppContext();
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
+    toggleDropdown();
+  };
+  const handleGenderClick = (gender) => {
+    setSelectedGender(gender);
     toggleDropdown();
   };
 
@@ -27,6 +31,18 @@ const Dropdown = () => {
       </button>
       {isOpen && (
         <ul className="absolute z-10 left-0 mt-2 py-2 bg-white w-full rounded-md shadow-xl">
+          {
+            genders.map((gender) =>(
+              <li key={gender} className=" lg:hidden px-4 py-2 text-sm font-medium leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">
+              <button
+                className="w-full block p-0 text-left"
+                onClick={() => handleGenderClick(gender._id)}
+              >
+                {gender.gender}
+              </button>
+            </li>
+            ))
+          }
           {options.map((option) => (
             <li key={option} className="px-4 py-2 text-sm font-medium leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">
               <button
@@ -37,6 +53,7 @@ const Dropdown = () => {
               </button>
             </li>
           ))}
+          
         </ul>
       )}
     </div>

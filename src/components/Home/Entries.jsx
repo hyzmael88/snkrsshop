@@ -35,7 +35,7 @@ function Entries({post}) {
 
         <div className="mt-4 ml-4 lg:ml-0 flex flex-row justify-between lg:mt-auto">
           <span className="flex flex-row  uppercase font-bold lg:font-medium cursor-pointer mt-0 lg:mt-4 ">
-          <Link href={`/magazine/${post.slug.current} `}>
+          <Link href={`/Post/${post.slug.current} `}>
             read more &nbsp;
              </Link>   
             <HiArrowUpRight className=" mt-2 text-xs" />

@@ -51,7 +51,7 @@ function Post({ item }) {
             {localDate.toLocaleDateString()}
             </p>
             <span className="flex flex-row  uppercase font-bold lg:font-medium cursor-pointer mt-0 lg:mt-4 hover:underline">
-             <Link href={`/magazine/${item.slug.current} `}>
+             <Link href={`/Post/${item.slug.current} `}>
             read more &nbsp;
              </Link>   
             <HiArrowUpRight className=" mt-2 text-xs" />

@@ -6,6 +6,7 @@ function RadioButtonGenres({genders}) {
   const { selectedGender, setSelectedGender} = AppContext();
 
   const handleRadioButtonChange = (e) => {
+   
     setSelectedGender(e.target.value);
   };
   return (
@@ -31,7 +32,7 @@ function RadioButtonGenres({genders}) {
           className="mr-2"
         />
         {gender.gender}
-      </label>
+      </label> 
     ))}
      
   </div>

@@ -10,12 +10,19 @@ function Product() {
   const { productSlug } = router.query;
   const { product, getProduct } = AppContext();
 
+  console.log(productSlug)
+
   useEffect(() => {
-    getProduct(productSlug);
+    if (productSlug) {
+      getProduct(productSlug);
+    }
   }, [productSlug]);
 
   console.log(product)
 
+  if (!product || product.length === 0) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Fragment>

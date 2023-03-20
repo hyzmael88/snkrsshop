@@ -28,7 +28,7 @@ function Product({ product }) {
             {category && category[0] && category[0].title}
           </p>
           <div className="flex flex-row w-full justify-between">
-          <p className="font-semibold uppercase w-[100px]">{product?.name}</p>
+          <p className="font-semibold uppercase w-[150px]">{product?.name}</p>
           <p className="font-semibold uppercase"> ${product?.minPrice}</p>
         </div>
         </div>

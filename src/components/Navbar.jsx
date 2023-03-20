@@ -7,7 +7,7 @@ import { AppContext } from "../context/StateContext";
 import Cart from "./Cart/Cart";
 
 function Navbar() {
-  const { facebookUser, setFacebookUser, getFacebookUser } = AppContext();
+  const { facebookUser, setFacebookUser, getFacebookUser, setGender } = AppContext();
   const [user, setUser] = useState(null);
   const [cart, setCart] = useState(null);
   const [movil, setMovil] = useState(false);
@@ -33,9 +33,7 @@ function Navbar() {
 
   const borrarCart = () => {
     var carrito = JSON.parse(localStorage.getItem("facebookUser"));
-    console.log(carrito);
     carrito.cart = [];
-    console.log(carrito);
     localStorage.setItem("facebookUser", JSON.stringify(carrito));
   };
 
@@ -46,10 +44,12 @@ function Navbar() {
           <div className="ml-4 text-xl">Mis Tennis</div>
         </Link>
         <div className="flex flex-row uppercase">
-          <span className="">For Her</span>
-          <span className="ml-4">For Him</span>
-          <span className="ml-4">Sale</span>
-          <Link href="/magazine">
+          <Link href='/Store' >
+          <span className="">Store</span>
+          </Link>
+          
+          
+          <Link href="/Magazine">
             <span className="ml-4">Magazine</span>
           </Link>
         </div>
@@ -109,12 +109,7 @@ function Navbar() {
         {
           movil?
           <div className="flex flex-col w-full h-full items-center text-center">
-            <Link href="" className="my-6 w-full " onClick={() => setMovil(false) }>
-              <span className="my-4  uppercase    ">For Her</span>
-            </Link>
-            <Link href="" className="my-6"  onClick={() => setMovil(false) }>
-              <span className="my-4 uppercase ">For Him</span>
-            </Link>
+            
               <Link href='/Store' className="my-6"  onClick={() => setMovil(false) }>
               <span className="my-4 uppercase ">Store</span>
               </Link>
