@@ -63,6 +63,11 @@ export default {
         options:{
           hotspot: true
         }
+      },
+      {
+        name: 'file',
+        title: 'Archivo',
+        type: 'file'
       }
     ]
   }
