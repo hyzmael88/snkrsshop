@@ -31,7 +31,9 @@ function Mosaic({ producto }) {
             className="flex flex-row  w-full h-full overflow-x-scroll  scroll-smooth scrollbar-hide ml-4 lg:ml-10 "
           >
             {producto?.image.map((img, index) => (
-              <img src={urlFor(img.asset._ref)} alt="" />
+              <img src={urlFor(img.asset._ref)}
+              key={index}
+              alt="" />
             ))}
           </div>
           <MdChevronRight
@@ -43,7 +45,9 @@ function Mosaic({ producto }) {
       </div>
       <div className="hidden lg:grid lg:grid-cols-2  gap-10 w-full h-full px-4">
         {producto?.image.map((img, index) => (
-          <img src={urlFor(img.asset._ref)} alt="" />
+          <img src={urlFor(img.asset._ref)}
+          key={index}
+          alt="" />
         ))}
       </div>
     </Fragment>

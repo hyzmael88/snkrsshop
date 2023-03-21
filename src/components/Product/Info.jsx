@@ -57,6 +57,7 @@ function Info({ producto }) {
           {producto?.sizes.map((size, index) => (
             <Size size={size} onClick={() => handleSizeClick(size)}
             productSize={productSize}
+            key={index}
             />
           ))}
         </div>
