@@ -23,11 +23,7 @@ function LoginFacebook() {
         return <div className=''>
             <FacebookLogin
   appId="867570441004969"
-/*   appId="936778880823804"
- */  children={<div className='flex flex-row items-center'>
-    <BsFacebook className='text-xl mr-3'/>
-    Facebook Login
-  </div>}
+
   onSuccess={(response) => {
     setFacebookResponse(response)
     console.log('Login Success!', response);

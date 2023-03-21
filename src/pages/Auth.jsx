@@ -73,7 +73,6 @@ function Auth() {
                   <label className="mt-4 cursor-pointer ">Facebook</label>
                   */}
                   <LoginFacebook/>
-                  <button onClick={facebookSignIn}>Sign in with Facebook</button>
                 </div>
                 
               </div>

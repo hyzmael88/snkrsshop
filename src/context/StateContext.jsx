@@ -12,6 +12,8 @@ export function StateContextProvider({ children }) {
   const [categories, setCategories] = useState([]);
   const [genders, setGenders] = useState([]);
   const [cart, setCart] = useState([]);
+  const [movil, setMovil] = useState(false);
+
   /*   console.log(cart)
    */
   //store
@@ -334,7 +336,9 @@ export function StateContextProvider({ children }) {
         setFacebookUser,
         getFacebookUser,
         deleteItemCart,
-        deleteCart
+        deleteCart,
+        movil,
+        setMovil
       }}
     >
       {children}

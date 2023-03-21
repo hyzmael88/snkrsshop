@@ -8,10 +8,9 @@ import Cart from "./Cart/Cart";
 import Search from "./Navbar/Search";
 
 function Navbar() {
-  const { facebookUser, setFacebookUser, getFacebookUser, setGender } = AppContext();
+  const { facebookUser, setFacebookUser, getFacebookUser, setGender, movil, setMovil } = AppContext();
   const [user, setUser] = useState(null);
   const [cart, setCart] = useState(null);
-  const [movil, setMovil] = useState(false);
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("facebookUser"));
@@ -129,7 +128,7 @@ function Navbar() {
             </Link>
           )}</span>
               <Search
-              setMovil = {setMovil}
+              
               />
             
             </div>

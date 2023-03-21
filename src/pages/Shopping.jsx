@@ -18,13 +18,13 @@ function Shopping() {
       setId(storedId)
     }
     const storedCart = JSON.parse(localStorage.getItem('facebookUser'))?.cart;
-    if (storedCart) {
+    if (storedCart && storedCart.length !== cart.length) {
       setCart(storedCart);
     }
       
       totalCalc();
     
-  }, []);
+  }, [cart]);
   console.log(cart)
 
   const totalCalc = () =>{

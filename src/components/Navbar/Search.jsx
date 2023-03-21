@@ -2,10 +2,12 @@ import { client } from "@/lib/client";
 import React, { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useRouter } from 'next/router';
+import { AppContext } from "@/context/StateContext";
 
-function Search({setMovil}) {
+function Search() {
     const [searchTerm, setSearchTerm] = useState("");
     const router = useRouter();
+    const {setMovil} = AppContext();
     
   
     const handleSubmit = async (e) => {
