@@ -16,19 +16,15 @@ function LoginFacebook() {
       }
     
       
-    }, [userResponse])
+    }, [userResponse, router])
     
     
    
         return <div className=''>
-            <FacebookLogin
+           <FacebookLogin
   appId="867570441004969"
 /*   appId="936778880823804"
- */  children={<div className='flex flex-row items-center'>
-    <BsFacebook className='text-xl mr-3'/>
-    Facebook Login
-  </div>}
-  onSuccess={(response) => {
+ */  onSuccess={(response) => {
     setFacebookResponse(response)
     console.log('Login Success!', response);
   }}
@@ -41,7 +37,13 @@ function LoginFacebook() {
     console.log('Get Profile Success!', response);
   }}
   className="bg-blue-600 py-4 px-6 rounded-lg"
-/>
+>
+  <div className='flex flex-row items-center'>
+    <BsFacebook className='text-xl mr-3'/>
+    Facebook Login
+  </div>
+</FacebookLogin>
+
 {
     error?
     <p className='flex flex-row items-center justify-center mt-4'>Ocurrio un error</p>
