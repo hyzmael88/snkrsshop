@@ -29,8 +29,8 @@ function Searching() {
   
 
   return (
-    <div className="flex flex-col h-full w-full">
-       <div className="text-6xl lg:text-8xl font-medium text-center mt-4 lg:mt-0 mb-10 lg:mb-14">Search</div>
+    <div className="flex flex-col h-full w-full lg:px-40">
+       <div className="text-6xl lg:text-8xl font-medium text-center mt-4 lg:mt-0 mb-10 lg:mb-14 ">Search</div>
          <div className="grid grid-cols-1 md:grid-cols-3 place-items-center w-full h-full px-8">
          {searchResults.map((item, index) =>(
         <Item item={item}

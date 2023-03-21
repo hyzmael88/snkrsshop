@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useRouter } from 'next/router';
 
-function Search() {
+function Search({setMovil}) {
     const [searchTerm, setSearchTerm] = useState("");
     const router = useRouter();
     
@@ -11,7 +11,7 @@ function Search() {
     const handleSubmit = async (e) => {
       e.preventDefault();
       // Envíe una solicitud de búsqueda a su API de Sanity
-     
+      setMovil(false)
       router.push(`/Searching/${searchTerm}`);
      
     };

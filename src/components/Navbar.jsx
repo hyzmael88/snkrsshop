@@ -128,7 +128,9 @@ function Navbar() {
               </div>
             </Link>
           )}</span>
-              <span></span>
+              <Search
+              setMovil = {setMovil}
+              />
             
             </div>
             :null
