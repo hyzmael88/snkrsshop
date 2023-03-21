@@ -5,6 +5,7 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import Link from 'next/link';
 import { AppContext } from "../context/StateContext";
 import Cart from "./Cart/Cart";
+import Search from "./Navbar/Search";
 
 function Navbar() {
   const { facebookUser, setFacebookUser, getFacebookUser, setGender } = AppContext();
@@ -54,12 +55,7 @@ function Navbar() {
           </Link>
         </div>
         <div className="flex flex-row items-center mr-8">
-          <div className="flex flex-row border-b-2 border-gray-400 cursor-pointer ">
-            <span className="mr-2" onClick={borrarCart}>
-              SEARCH
-            </span>
-            <FiSearch className="mt-1" />
-          </div>
+          <Search/>
           {user ? (
             <p className="flex flex-row items-center justify-center">
               <img
