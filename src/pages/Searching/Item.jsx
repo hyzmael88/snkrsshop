@@ -7,7 +7,7 @@ function Item({ item }) {
   const [fondo, setFondo] = useState(false);
   return (
     <div className="w-full h-[250px] items-center text-center relative">
-      {item.mainImage ? (
+      {item.mainImage && item.mainImage.asset ? (
         <img
           src={urlFor(item?.mainImage.asset._ref)}
           className={`w-full h-full object-cover  absolute `}
