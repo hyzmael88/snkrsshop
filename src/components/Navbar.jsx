@@ -76,7 +76,7 @@ function Navbar() {
             </p>
             
           ) : (
-            <Link href="Auth">
+            <Link href="/Auth">
               <div className="ml-4 uppercase cursor-pointer">
                 Iniciar Sesion
               </div>
@@ -134,7 +134,7 @@ function Navbar() {
               
             </p>
           ) : (
-            <Link href="auth" className="my-6"  onClick={() => setMovil(false) }>
+            <Link href="/Auth" className="my-6"  onClick={() => setMovil(false) }>
               <div className="ml-4 uppercase cursor-pointer">
                 Iniciar Sesion
               </div>
