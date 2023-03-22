@@ -13,6 +13,7 @@ export function StateContextProvider({ children }) {
   const [genders, setGenders] = useState([]);
   const [cart, setCart] = useState([]);
   const [movil, setMovil] = useState(false);
+  const [logOutVisible, setLogOutVisible] = useState(false);
 
   /*   console.log(cart)
    */
@@ -338,7 +339,9 @@ export function StateContextProvider({ children }) {
         deleteItemCart,
         deleteCart,
         movil,
-        setMovil
+        setMovil,
+        logOutVisible,
+        setLogOutVisible
       }}
     >
       {children}

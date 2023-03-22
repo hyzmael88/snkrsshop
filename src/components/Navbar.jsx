@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BsX, BsXLg } from "react-icons/bs";
+import { BsFillXCircleFill, BsX, BsXLg } from "react-icons/bs";
 import { FiMenu, FiSearch } from "react-icons/fi";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import Link from 'next/link';
@@ -8,7 +8,9 @@ import Cart from "./Cart/Cart";
 import Search from "./Navbar/Search";
 
 function Navbar() {
-  const { facebookUser, setFacebookUser, getFacebookUser, setGender, movil, setMovil } = AppContext();
+  const { facebookUser, setFacebookUser, getFacebookUser,
+     setGender, movil, setMovil,
+     logOutVisible, setLogOutVisible} = AppContext();
   const [user, setUser] = useState(null);
   const [cart, setCart] = useState(null);
 
@@ -31,10 +33,9 @@ function Navbar() {
   }, [facebookUser, typeof window !== "undefined" && window.location.pathname]);
   
 
-  const borrarCart = () => {
-    var carrito = JSON.parse(localStorage.getItem("facebookUser"));
-    carrito.cart = [];
-    localStorage.setItem("facebookUser", JSON.stringify(carrito));
+  const logOut = () => {
+    localStorage.clear();
+    location.reload();
   };
 
   return (
@@ -56,14 +57,24 @@ function Navbar() {
         <div className="flex flex-row items-center mr-8">
           <Search/>
           {user ? (
-            <p className="flex flex-row items-center justify-center">
+            <p className="flex flex-row items-center justify-center relative"
+            onClick={() => setLogOutVisible(!logOutVisible)}
+            >
               <img
                 src={user?.picture ? user.picture : user.picture.data.url}
                 alt="Profile picture"
                 className="w-[30px] h-[30px]  rounded-full ml-4 mt-1 mr-3"
               />
               {user.name}
+              {
+                logOutVisible?(
+                  <p className="absolute top-12 left-12 bg-white w-[150px] text-center text-red-500 flex flex-row justify-center uppercase rounded-lg cursor-pointer" onClick={logOut}><BsFillXCircleFill className="text-lg mr-2 "/>log out</p>
+                ):
+                  null
+                
+              }
             </p>
+            
           ) : (
             <Link href="Auth">
               <div className="ml-4 uppercase cursor-pointer">
@@ -71,6 +82,7 @@ function Navbar() {
               </div>
             </Link>
           )}
+          
 
           <div>
             <Cart cart={cart} />
@@ -112,21 +124,29 @@ function Navbar() {
               <span className="my-4 uppercase ">Magazine</span>
               </Link>
               <span className="my-4 uppercase ">{user ? (
-            <p className="flex flex-row items-center justify-center">
+            <p className="flex flex-row items-center justify-center" onClick={() => setLogOutVisible(!logOutVisible)}>
               <img
                 src={user?.picture ? user.picture : user.picture.data.url}
                 alt="Profile picture"
                 className="w-[30px] h-[30px]  rounded-full  mt-1 mr-2"
               />
               {user.name}
+              
             </p>
           ) : (
             <Link href="auth" className="my-6"  onClick={() => setMovil(false) }>
               <div className="ml-4 uppercase cursor-pointer">
-                
+                Iniciar Sesion
               </div>
             </Link>
           )}</span>
+          {
+                logOutVisible?(
+                  <span className="my-4 uppercase flex flex-row text-red-500" onClick={logOut}><BsFillXCircleFill className="text-lg mr-2 "/>log out</span>
+                ):
+                  null
+                
+              }
               <Search
               
               />
