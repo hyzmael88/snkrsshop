@@ -35,7 +35,7 @@ function Info({ producto }) {
 
   return (
     <div className="w-full h-full flex flex-col">
-           <p className="mt-6 text-md font-medium text-gray-400 ">{category && category[0] && category[0].title}</p> 
+           <p className=" text-md font-medium text-gray-400 ">{category && category[0] && category[0].title}</p> 
 
       <div className="flex flex-row w-full h-full justify-between items-center">
         
