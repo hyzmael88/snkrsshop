@@ -40,7 +40,7 @@ function Navbar() {
 
   return (
     <div>
-      <div className="hidden lg:flex lg:flex-row h-20 w-full justify-between items-center border-b-2 drop-shadow-xl font-semibold ">
+      <div className="2xl:max-w-[1280px] w-full mx-auto hidden  lg:flex lg:flex-row h-20  justify-between items-center border-b-2 drop-shadow-xl font-semibold ">
         <Link href="/">
           <div className="ml-4 text-xl">Mis Tennis</div>
         </Link>
