@@ -3,18 +3,18 @@ import FacebookLogin from '@greatsumini/react-facebook-login';
 import {BsFacebook} from 'react-icons/bs'
 import { AppContext } from "../../context/StateContext";
 import { useRouter } from 'next/router';
-import { useHistory } from 'react-router-dom';
+
 
 
 
 function LoginFacebook() {
     const {userResponse, setUserResponse, facebookResponse, setFacebookResponse, error, setError} = AppContext();
     const router = useRouter();
-    const history = useHistory();
+    
     useEffect(() => {
       if(userResponse){
         //router.push('/');
-        history.goBack();
+        router.back()
       }
     
       

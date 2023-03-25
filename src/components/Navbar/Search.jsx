@@ -22,6 +22,7 @@ function Search() {
     const handleChange = (e) => {
       setSearchTerm(e.target.value);
     };
+    
   return (
     <div className="flex flex-col w-[220px] h-full relative">
   <form onSubmit={handleSubmit} className="flex flex-row justify-between w-full h-full border-b-2 border-gray-400 cursor-pointer ">
