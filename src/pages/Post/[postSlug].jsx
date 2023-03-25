@@ -25,7 +25,7 @@ function Post() {
  
 
   return (
-    <div className="flex flex-col items-center  w-full h-full ">
+    <div className="flex flex-col items-center  2xl:max-w-[1280px]  w-full h-full mx-auto overflow-hidden ">
       <div className="text-center mt-8">
         <h2 className="font-bold text-4xl">{post[0]?.title}</h2>
       </div>
