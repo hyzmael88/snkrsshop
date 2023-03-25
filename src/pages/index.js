@@ -17,7 +17,7 @@ export default function Home() {
   return (
 
 
-    <div className='2xl:max-w-[1280px] w-full h-full mx-auto overflow-hidden'>
+    <div className='2xl:max-w-[1280px]  w-full h-full mx-auto overflow-hidden'>
 
 
       <Hero />

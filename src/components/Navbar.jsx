@@ -54,8 +54,11 @@ function Navbar() {
             <span className="ml-4">Magazine</span>
           </Link>
         </div>
-        <div className="flex flex-row items-center mr-8">
+        <div className="flex flex-row items-center">
+
           <Search/>
+        </div>
+        <div className="flex flex-row items-center mr-8">
           {user ? (
             <p className="flex flex-row items-center justify-center relative"
             onClick={() => setLogOutVisible(!logOutVisible)}

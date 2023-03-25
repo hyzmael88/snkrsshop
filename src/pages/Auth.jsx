@@ -1,87 +1,84 @@
-import React from 'react'
-import LoginFacebook from '../components/Auth/LoginFacebook'
-
-
+import LoginGoogle from "@/components/Auth/LoginGoogle";
+import React, { useState } from "react";
+import LoginFacebook from "../components/Auth/LoginFacebook";
 
 function Auth() {
+  const facebookSignIn = () => {
+    const provider = new FacebookAuthProvider();
+    signInWithRedirect(auth, provider);
+  };
 
-  const facebookSignIn= () =>
-  {
-  const provider = new FacebookAuthProvider()
-  signInWithRedirect(auth,provider)
-  }
+  const [register, setRegister] = useState(false);
+
   return (
-    
-    <div className="w-full h-[850px]">
-      
-      <div className="w-full h-full bg-purple-700  ">
-        <div className="w-full h-full bg-gradient-to-r from-black"></div>
-        <div className="flex justify-center items-center  ">
-          <div className="w-[450px] h-[600px] bg-black/70 rounded-xl drop-shadow-lg absolute top-[20%]">
-            <form
-/*               onSubmit={handleSubmit}
- */              className=" flex flex-col w-full items-center px-6 py-16"
-            >
-              <h2 className="text-3xl text-white">Sign in</h2>
-{/*               {error ? <p className="p-3 bg-red-400 my-2">{error}</p> : null}
- */}              <div>
-                <label className="block mb-2 mt-4 text-sm font-medium text-white dark:text-gray-300">
-                  Your email:
-                </label>
-                <input
-                  onChange={(e) => setEmail(e.target.value)}
-                  type="email"
-                  id="email"
-                  placeholder="yourmail@mail.com"
-                  className=" text-center rounded-lg py-2 mb-4 p-16 "
-                ></input>
-              </div>
-              <div>
-                <label className="block mb-2 mt-4 text-sm font-medium text-white dark:text-gray-300">
-                  Password:
-                </label>
-                <input
-                  onChange={(e) => setPassword(e.target.value)}
-                  type="password"
-                  id="password"
-                  placeholder="password"
-                  className=" text-center rounded-lg py-2 mb-4 p-16 "
-                ></input>
-              </div>
-              <div>
-                <button className="py-2 p-16 mt-4 bg-pink-600 rounded-lg text-white font-bold">
-                  Submit
-                </button>
-              </div>
-              <div className="relative  flex items-center justify-between w-full text-white">
-                <div className="w-full text-center">
-                  <span>_____________</span>
-                </div>
-                <div className="w-full my-8 text-center">
-                  <p className="pt-4">OR</p>
-                </div>
-                <div className="w-full text-center">
-                  <span>_____________</span>
-                </div>
-              </div>
-              <div className="flex w-full items-center justify-between text-white ">
-                <div className="flex flex-col w-full items-center mr-4 ">
-                 {/*  <BsFacebook
-                    onClick={facebookSignIn}
-                    className="text-4xl text-white cursor-pointer hover:text-[#1877f2]"
-                  /> 
-                  <label className="mt-4 cursor-pointer ">Facebook</label>
-                  */}
-                  <LoginFacebook/>
-                </div>
-                
-              </div>
-            </form>
+    <div className="2xl:max-w-[1280px]  w-full h-full mx-auto overflow-hidden">
+      <div className="w-full h-full grid grid-col-1 place-items-center">
+      <div className={`flex flex-col w-full lg:w-[450px] h-full ${register == false ? 'lg:h-[650px]' : 'lg:h-[700px]'} border-2 border-gray-400 rounded-lg mt-20 mb-20 items-center`}>
+          <h2 className="font-bold text-4xl mt-4 mb-4">Mis Tennis</h2>
+          {register ==false ? (
+            <h3 className="text-2xl font-semibold mb-4">Login</h3>
+          ) : (
+            <h3 className="text-2xl font-semibold mb-4">Register</h3>
+          )}
+          <input
+            type="text"
+            id="mail"
+            name="mail"
+            placeholder="email"
+            className="px-14 py-4 bg-gray-200 rounded-lg mb-4"
+          ></input>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="password"
+            className="px-14 py-4 bg-gray-200 rounded-lg"
+          ></input>
+          {
+            register ?
+
+            <input
+              type="password"
+              id="password"
+              name="Repassword"
+              placeholder="Repeat password"
+              className="px-14 py-4 bg-gray-200 rounded-lg mt-4"
+            ></input>
+            : null
+          }
+          {
+            register == false ?
+
+          <p className="mt-4 text-gray-600">
+            Don&apos;t have an account?{" "}
+            <span className="underline cursor-pointer" onClick={()=>setRegister(true)}>click here</span>
+          </p>
+          :
+<p className="mt-4 text-gray-600">
+            Already have an account?{" "}
+            <span className="underline cursor-pointer" onClick={()=>setRegister(false)}>click here</span>
+          </p>
+          }
+          {
+            register == false?
+
+          <button className="text-white text-lg font-semibold bg-red-700 px-14 py-4 rounded-lg mt-4">
+            Login
+          </button>
+          :
+          <button className="text-white text-lg font-semibold bg-red-700 px-14 py-4 rounded-lg mt-4">
+            Register
+          </button>
+          }
+          <div className="mt-8 border-2  border-gray-100 w-full"></div>
+          <div className="mt-8">
+            <LoginFacebook />
+            <LoginGoogle/>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Auth
+export default Auth;

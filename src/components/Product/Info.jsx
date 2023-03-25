@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import Size from "./Size";
 import { AppContext } from "../../context/StateContext";
 import { client, urlFor } from "../../lib/client";
+import { useRouter } from 'next/router';
 
 
 function Info({ producto }) {
   const {addCart} = AppContext()
   const [productSize, setProductSize] = useState(null);
   const [category, setCategory] = useState(null);
+  const router = useRouter();
+
 
   
   useEffect(() => {
@@ -24,6 +27,16 @@ function Info({ producto }) {
       .fetch(`*[_id == "${producto?.category._ref}"]`)
       .then(category => setCategory(category))
   }, [producto?.category._ref]);
+
+  const prevAddCart = (producto, productSize) =>{
+    const info = localStorage.getItem('facebookUser')
+    if(info == null){
+      router.push('/Auth')
+    }
+    else{
+      addCart(producto,productSize)
+    }
+  }
   
 
   
@@ -72,7 +85,7 @@ function Info({ producto }) {
       </div>
       <div className="w-full">
         <button
-         onClick={() => addCart(producto, productSize)} 
+         onClick={() => prevAddCart(producto, productSize)} 
         className="w-full h-10 bg-black text-white uppercase font-bold mt-4">
           Add to bag
         </button>

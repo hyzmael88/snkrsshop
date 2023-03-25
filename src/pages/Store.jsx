@@ -12,7 +12,7 @@ function Store() {
 
       
   return (
-    <Fragment>
+    <div className="2xl:max-w-[1280px] w-full h-full mx-auto overflow-hidden">
     <div className='w-full flex flex-row justify-end mt-4 mb-4 pr-2 lg:pr-6 cursor-pointer items-center relative '>
         <span className='uppercase'>sort by:&nbsp;</span>
         <Dropdown/>
@@ -25,7 +25,7 @@ function Store() {
             <Sidebar />
         </div>
         
-        <div className='grid grid-cols-2  md:grid-cols-3 place-items-center w-full lg:w-3/4'>
+        <div className='grid gric-cols-1 sm:grid-cols-2  md:grid-cols-3 place-items-center w-full lg:w-3/4'>
             {
             filteredProducts.map((product, index) =>(
 
@@ -37,7 +37,7 @@ function Store() {
             }
         </div>
     </div>
-    </Fragment>
+    </div>
   )
 }
 

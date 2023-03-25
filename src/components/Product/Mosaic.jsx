@@ -22,11 +22,7 @@ function Mosaic({ producto }) {
           
         </div>
         <div className="lg:hidden relative flex flex-row items-center group">
-          <MdChevronLeft
-            onClick={slideLeft}
-            size={40}
-            className="bg-white left-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block"
-          />
+          
           <div
             id={"sliderNew"}
             className="flex flex-row  w-full h-full overflow-x-scroll  scroll-smooth scrollbar-hide ml-4 lg:ml-10 "
@@ -37,18 +33,19 @@ function Mosaic({ producto }) {
               alt="" />
             ))}
           </div>
-          <MdChevronRight
-            onClick={slideRight}
-            size={40}
-            className="bg-white right-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block"
-          />
+         
         </div>
-        <Link href={`/AR/${producto.slug.current}`} className='lg:hidden'>
+        {
+          producto.file ?
+          <Link href={`/AR/${producto.slug.current}`} className='lg:hidden'>
         
         <button className="mt-8 bg-gray-800 font-semibold text-white rounded-lg py-3 px-8 flex flex-row justify-center">
         <MdViewInAr className="text-2xl mr-2" />View in AR  
       </button>
       </Link>
+      :null
+        }
+        
       </div>
       
       <div className="hidden lg:grid lg:grid-cols-2  gap-10 w-full h-full px-4">

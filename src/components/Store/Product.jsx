@@ -15,21 +15,15 @@ function Product({ product }) {
       href={`/Product/${encodeURIComponent(product.slug.current)} `}
       className="cursor-pointer"
     >
-      <div className="relative flex flex-col justiy-center items-center w-full h-[350px] border-[1px] lg:border-[0.5px] border-gray-300 ">
-        {product.file ? (
-          <Link href={`/AR/${product.slug.current}`}>
-            <div className="absolute top-2 left-2 ">
-              <MdViewInAr className="text-6xl" />
-              <div className="fex- flex-col items-center text-center justify-center text-sm ">
-                AR
-              </div>
-            </div>
-          </Link>
-        ) : null}
-        <div className="w-[90%]">
-          <img src={urlFor(product?.image[0])} alt="snkr" className=" mt-14" />
-          <div className="flex flex-row w-full h-full ">
-            <div className="flex flex-col w-full">
+      <div className="relative flex flex-col justiy-center items-center w-full h-[420px] lg:h-[300px] border-[1px] lg:border-[0.5px] border-gray-300 ">
+        
+        <div className="w-full h-full">
+          <div className="flex flex-col items-center">
+
+          <img src={urlFor(product?.image[0])} alt="snkr" className=" mt-14 w-[75%] sm:w-[90%] sm:h-[90%] md:w-[60%]" />
+          </div>
+          <div className="flex flex-row w-full h-[100px] ">
+            <div className="flex flex-col w-full h-[100px] ml-3 mr-3">
               <p className="mt-6 text-sm text-gray-400 ">
                 {category && category[0] && category[0].title}
               </p>

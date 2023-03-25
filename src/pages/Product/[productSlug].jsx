@@ -5,6 +5,7 @@ import Mosaic from "../../components/Product/Mosaic";
 import Recomendations from "../../components/Product/Recomendations";
 import { AppContext } from "../../context/StateContext";
 
+
 function Product() {
   const router = useRouter();
   const { productSlug } = router.query;
@@ -25,7 +26,7 @@ function Product() {
   }
 
   return (
-    <Fragment>
+    <div className='2xl:max-w-[1280px]  w-full h-full mx-auto overflow-hidden'>
       <div className="w-full h-full flex flex-col px-8 lg:px-0  lg:flex-row mt-16">
         <div className="w-full lg:w-2/3">
           <Mosaic 
@@ -41,7 +42,7 @@ function Product() {
       <div className="w-full h-full">
         <Recomendations />
       </div>
-    </Fragment>
+    </div>
   );
 }
 

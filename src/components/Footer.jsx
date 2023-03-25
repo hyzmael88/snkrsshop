@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div className='flex flex-col lg:flex-row justify-between items-center w-full h-full mt-10'>
+    <div className='flex flex-col lg:flex-row justify-between items-center 2xl:max-w-[1280px]  w-full h-full mx-auto overflow-hidden mt-10'>
 
       <div className='flex flex-col'>
         <h4 className='font-bold text-center lg:text-start'>Sign up</h4>
