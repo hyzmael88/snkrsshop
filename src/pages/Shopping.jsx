@@ -3,6 +3,7 @@ import Form from "../components/Shopping/Form";
 import Sumary from "../components/Shopping/Summary";
 import { AppContext } from "../context/StateContext";
 import { urlFor } from "../lib/client";
+import getStripe from '../lib/getStripe'
 
 
 function Shopping() {
@@ -36,24 +37,58 @@ function Shopping() {
     setTotal(aux+10)
   }
 
+  const handleFormSubmit = async () => {
+    
+    const stripe = await getStripe();
+  
+    try {
+      const response = await fetch('/api/stripe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          items: cart,
+          id: id,
+          total: total
+        })
+      });
+
+      if(response.statusCode === 500) return
+
+  
+      const data = await response.json();
+      stripe.redirectToCheckout({sessionId: data.id})
+
+/*       toast.loading('Redirecting...')
+ */      
+      const result = await stripe.redirectToCheckout({
+        sessionId: sessionId
+      });
+  
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
  
 
   
 
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className="2xl:max-w-[1280px]  w-full h-full mx-auto overflow-hidden flex flex-col">
       <div className="flex flex-col justify-center items-center my-11">
         <h1 className="uppercase text-4xl lg:text-7xl">Shopping bag</h1>
       </div>
       <div className="flex flex-col-reverse px-6 lg:px-0  lg:flex-row w-full h-full">
-        <div className="flex flex-col w-full lg:w-2/3 lg:pl-8 mt-4 lg:mt-0 mr-10">
+        {/* <div className="flex flex-col w-full  lg:pl-8 mt-4 lg:mt-0 mr-10">
         <Form
         id = {id}
         cart = {cart}
         total = {total}
         />
-        </div>
-        <div className="flex flex-col w-full lg:w-1/3  ">
+        </div> */}
+        <div className="flex flex-col w-full   ">
           <h3 className="uppercase font-bold mb-4">Summary</h3>
           {cart?.map((item, index) => (
            <Sumary
@@ -75,6 +110,13 @@ function Shopping() {
           <span className="uppercase font-semibold">total</span>
           <span className="font-semibold">${total}</span>
         </div>
+        <button
+          className="w-full bg-black text-white text-sm uppercase font-semibold py-4 mt-4"
+          onClick={handleFormSubmit}
+          type="submit"
+        >
+          continue
+        </button>
           </div>
         </div>
         

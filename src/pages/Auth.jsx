@@ -24,14 +24,14 @@ function Auth() {
             type="text"
             id="mail"
             name="mail"
-            placeholder="email"
+            placeholder="Email"
             className="px-14 py-4 bg-gray-200 rounded-lg mb-4"
           ></input>
           <input
             type="password"
             id="password"
             name="password"
-            placeholder="password"
+            placeholder="Password"
             className="px-14 py-4 bg-gray-200 rounded-lg"
           ></input>
           {
