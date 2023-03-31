@@ -1,6 +1,7 @@
 import LoginGoogle from "@/components/Auth/LoginGoogle";
 import React, { useState } from "react";
 import LoginFacebook from "../components/Auth/LoginFacebook";
+import LoginFacebook2 from "@/components/Auth/LoginFacebook2";
 
 function Auth() {
   const facebookSignIn = () => {
@@ -72,7 +73,7 @@ function Auth() {
           }
           <div className="mt-8 border-2  border-gray-100 w-full"></div>
           <div className="mt-8">
-            <LoginFacebook />
+            <LoginFacebook2 />
             <LoginGoogle/>
           </div>
         </div>

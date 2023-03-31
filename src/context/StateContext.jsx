@@ -46,7 +46,7 @@ export function StateContextProvider({ children }) {
     });
 
     setProducts(productsWMinMax);
-  };
+  }; 
 
   const getProduct = async (productSlug) => {
     console.log(productSlug);

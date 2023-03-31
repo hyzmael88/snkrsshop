@@ -6,8 +6,11 @@ import Link from 'next/link';
 import { AppContext } from "../context/StateContext";
 import Cart from "./Cart/Cart";
 import Search from "./Navbar/Search";
-
+import {useSession, signOut} from 'next-auth/react'
 function Navbar() {
+
+  const {data: session, status} = useSession()
+
   const { facebookUser, setFacebookUser, getFacebookUser,
      setGender, movil, setMovil,
      logOutVisible, setLogOutVisible} = AppContext();
@@ -37,6 +40,8 @@ function Navbar() {
     localStorage.clear();
     location.reload();
   };
+
+  console.log(session)
 
   return (
     <div>
