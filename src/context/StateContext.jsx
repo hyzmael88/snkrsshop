@@ -71,6 +71,22 @@ export function StateContextProvider({ children }) {
       }
     }
   };
+  const getUser = async (email) => {
+    console.log("este es el email que llego", email)
+    if (email) {
+      const query = `*[_type == "user" && email == $email]`;
+      const params = { email };
+      const user = await client.fetch(query, params);
+      console.log("dentro de getUser", user);
+      if (user?.length == 0) {
+        console.log("no encontré el usuario");
+        return null;
+      } else {
+        console.log("encontré el usuario:", user);
+        return user[0];
+      }
+    }
+  };
 
   const getPosts = async () => {
     const query = '*[_type == "blogPost"]';
@@ -222,7 +238,7 @@ export function StateContextProvider({ children }) {
     console.log("se modifico el carrito", cart);
   }, [cart]);
 
-  //Auth
+  //Auth FacebookUser
   function createFacebookUser(userResponse) {
     client
       .create({
@@ -262,6 +278,37 @@ export function StateContextProvider({ children }) {
       });
     }
   }, [userResponse]);
+
+  //Auth User
+  function createUser(session) {
+    console.log(session)
+    getUser(session?.user.email).then((result) =>{
+      console.log(result)
+      if(!result){
+        client
+        .create({
+          _type: "user",
+          name: session?.user.name,
+          email: session?.user.email,
+          picture: session?.user.image,
+          cart: [],
+          registerDate: new Date(),
+        })
+        .then((result) => {
+          console.log("Successfully created user", result);
+        })
+        .catch((error) => {
+          console.error("Error creating user", error);
+        });
+      }
+      else{
+        console.log(result)
+      }
+    })
+    
+  }
+
+
 
   //Store
   useEffect(() => {
@@ -341,7 +388,8 @@ export function StateContextProvider({ children }) {
         movil,
         setMovil,
         logOutVisible,
-        setLogOutVisible
+        setLogOutVisible,
+        createUser
       }}
     >
       {children}

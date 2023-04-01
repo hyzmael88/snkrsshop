@@ -1,55 +1,80 @@
-export default{
-    name: 'user',
-    type: 'document',
-    title: 'User',
-    hooks: {
-        async create(user) {
-          user.registerDate = new Date();
-        }
-      },
-    
-    fields:[
-        {
+export default {
+  name: 'user',
+  type: 'document',
+  title: 'User',
+  hooks: {
+    async create(user) {
+      user.registerDate = new Date();
+    }
+  },
+
+  fields: [
+    {
+      name: 'name',
+      title: 'Name',
+      type: 'string',
+    },
+    {
+      name: 'email',
+      title: 'Email',
+      type: 'email',
+    },
+    {
+      name: 'picture',
+      title: 'Picture',
+      type: 'string'
+    },
+    {
+      name: 'registerDate',
+      title: 'Register Date',
+      type: 'datetime'
+    },
+    {
+      name: 'cart',
+      title: 'Cart',
+      type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+
+          {
+            name: 'id',
+            title: 'ID',
+            type: 'string',
+            validation: Rule => Rule.required()
+          },
+
+          {
             name: 'name',
             title: 'Name',
-            type: 'string',
-        },
-        {
-            name: 'email',
-            title: 'Email',
-            type: 'email',
-        },
-        
-       
-        {
-            name: 'registerDate',
-            title: 'Register Date',
-            type: 'datetime'
+            type: 'string'
           },
           {
-            name: 'cart',
-            title: 'Cart',
-            type: 'array',
-            of: [{
-              type: 'object',
-              fields: [
-                
-                {
-                  name: 'product',
-                  type: 'reference',
-                  to: [{type: 'product'}]
-                },
-                {
-                  name: 'size',
-                  type: 'reference',
-                  to: [{type: 'size'}]
-                },
-                {
-                  name: 'quantity',
-                  type: 'number'
-                }
-              ]
-            }]
+            name: 'image',
+            title: 'Image',
+            type: 'string'
+          },
+          {
+            name: 'size',
+            title: 'Size',
+            type: 'string'
+          },
+          {
+            name: 'price',
+            title: 'Price',
+            type: 'number'
+          },
+          {
+            name: 'quantity',
+            title: 'Quantity',
+            type: 'number'
           }
-    ]
+
+
+
+
+        ]
+      }]
+    }
+  ]
 }

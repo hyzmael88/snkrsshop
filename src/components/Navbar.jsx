@@ -10,12 +10,27 @@ import {useSession, signOut} from 'next-auth/react'
 function Navbar() {
 
   const {data: session, status} = useSession()
+  const [userCreated, setUserCreated] = useState(false);
 
   const { facebookUser, setFacebookUser, getFacebookUser,
      setGender, movil, setMovil,
-     logOutVisible, setLogOutVisible} = AppContext();
+     logOutVisible, setLogOutVisible,
+    createUser
+    } = AppContext();
+
+    
   const [user, setUser] = useState(null);
   const [cart, setCart] = useState(null);
+
+  console.log(session)
+
+  useEffect(() => {
+    if (session && !userCreated) {
+      createUser(session);
+      setUserCreated(true);
+    }
+  }, [session, userCreated]);
+  
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("facebookUser"));
@@ -36,12 +51,15 @@ function Navbar() {
   }, [facebookUser, typeof window !== "undefined" && window.location.pathname]);
   
 
-  const logOut = () => {
+  const logOut = async () => {
+    await signOut();
+    setUser(null);
+    setCart(null);
     localStorage.clear();
     location.reload();
   };
 
-  console.log(session)
+  
 
   return (
     <div>
@@ -64,20 +82,21 @@ function Navbar() {
           <Search/>
         </div>
         <div className="flex flex-row items-center mr-8">
-          {user ? (
+          {session?.user ? (
             <p className="flex flex-row items-center justify-center relative"
             onClick={() => setLogOutVisible(!logOutVisible)}
             >
               <img
-                src={user?.picture ? user.picture : user.picture.data.url}
+                src={session.user.image}
                 alt="Profile picture"
                 className="w-[30px] h-[30px]  rounded-full ml-4 mt-1 mr-3"
               />
-              {user.name}
+              {session.user.name}
               {
                 logOutVisible?(
-                  <p className="absolute top-12 left-12 bg-white w-[150px] text-center text-red-500 flex flex-row justify-center uppercase rounded-lg cursor-pointer" onClick={logOut}><BsFillXCircleFill className="text-lg mr-2 "/>log out</p>
-                ):
+                  <p className="absolute top-12 left-12 bg-white w-[150px] text-center text-red-500 flex flex-row justify-center uppercase rounded-lg cursor-pointer" onClick={logOut}>
+                  <BsFillXCircleFill className="text-lg mr-2 "/>log out
+                </p>                ):
                   null
                 
               }
@@ -134,11 +153,11 @@ function Navbar() {
               <span className="my-4 uppercase ">{user ? (
             <p className="flex flex-row items-center justify-center" onClick={() => setLogOutVisible(!logOutVisible)}>
               <img
-                src={user?.picture ? user.picture : user.picture.data.url}
+                src={session.user.image}
                 alt="Profile picture"
                 className="w-[30px] h-[30px]  rounded-full  mt-1 mr-2"
               />
-              {user.name}
+              {session.user.name}
               
             </p>
           ) : (
