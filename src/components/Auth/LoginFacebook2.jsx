@@ -31,7 +31,7 @@ function LoginFacebook2() {
       <FaFacebook className="mr-2 mt-1" />
       Iniciar sesión con Facebook
     </button>
-    </div>
+    </div> 
   )
 }
 

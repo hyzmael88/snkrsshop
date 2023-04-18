@@ -74,7 +74,10 @@ function Auth() {
           <div className="mt-8 border-2  border-gray-100 w-full"></div>
           <div className="mt-8">
             <LoginFacebook2 />
+            <div  className="mt-4">
+
             <LoginGoogle/>
+            </div>
           </div>
         </div>
       </div>
