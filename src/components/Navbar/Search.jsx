@@ -44,7 +44,7 @@ function Search() {
         busqueda()
       }
     }, [searchTerm])
-    console.log(searchResults)
+    
 
   return (
     <div className="flex flex-col w-[220px] h-full relative">

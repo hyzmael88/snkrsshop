@@ -73,8 +73,8 @@ function Auth() {
           }
           <div className="mt-8 border-2  border-gray-100 w-full"></div>
           <div className="mt-8">
-            <LoginFacebook2 />
-            <div  className="mt-4">
+            {/* <LoginFacebook2 /> */}
+            <div  className="">
 
             <LoginGoogle/>
             </div>
